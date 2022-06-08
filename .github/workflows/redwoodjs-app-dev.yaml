@@ -22,7 +22,7 @@ env:
 
   # Repository
   GIT_DEPLOY_REPOSITORY_NAME: heremias/redwoodjs-on-kubernetes
-  GIT_DEPLOY_REPOSITORY_BRANCH: main
+  GIT_DEPLOY_REPOSITORY_BRANCH: dev
   GIT_DEPLOY_REPOSITORY_AUTHOR_NAME: heremias
   GIT_DEPLOY_REPOSITORY_AUTHOR_EMAIL: heremias@users.noreply.github.com
   GIT_DEPLOY_REPOSITORY_AUTHOR_TOKEN: ${{ secrets.__GITHUB_ACCESS_TOKEN }}
