@@ -115,6 +115,8 @@ jobs:
       # It will be used in Kustomize to generate a Kubernetes secret for the container registry
       - name: Save Container Registry credentials
         run: |
+          az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}
+          az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
           az aks get-credentials -g ynhd_group -n ynhd --overwrite
           docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
           kubectl apply -f kubernetes/redwood.yaml
