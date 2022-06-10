@@ -115,7 +115,8 @@ jobs:
       # It will be used in Kustomize to generate a Kubernetes secret for the container registry
       - name: Save Container Registry credentials
         run: |
-          kubectl create secret docker-registry redwood --docker-server=ghcr.io --docker-username=heremias --docker-password=${{ secrets.__GITHUB_ACCESS_TOKEN }} --docker-email=Jeremy.evans@ymca.net
+          az aks get-credentials -g ynhd_group -n ynhd --overwrite
+          docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
           kubectl apply -f kubernetes/redwood.yaml
           kubectl get pod private-reg
 
