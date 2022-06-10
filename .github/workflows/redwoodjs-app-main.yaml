@@ -119,7 +119,6 @@ jobs:
           az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
           az aks get-credentials -g ynhd_group -n ynhd --overwrite
           docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
-          kubectl create secret generic ghcred --from-file=.dockerconfigjson=/home/runner/.docker/config.json --type=kubernetes.io/dockerconfigjson
           kubectl apply -f kubernetes/redwood.yaml
           kubectl get pod private-reg
 
