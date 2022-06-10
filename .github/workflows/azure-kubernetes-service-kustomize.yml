@@ -40,6 +40,7 @@ on:
 env:
   AZURE_CONTAINER_REGISTRY: "ycloud"
   CONTAINER_NAME: "redwood-main"
+  WEB_CONTAINER_NAME: "redwood-web"
   RESOURCE_GROUP: "ynhd_group"
   CLUSTER_NAME: "ynhd"
   IMAGE_PULL_SECRET_NAME: "redwood"
@@ -70,7 +71,8 @@ jobs:
     - name: Build and push image to ACR
       run: |
         az acr build -f api/Dockerfile --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
-
+        az acr build -f web/Dockerfile --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.WEB_CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
+        
   createSecret:
     permissions:
       contents: read
