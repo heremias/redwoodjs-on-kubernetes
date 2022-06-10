@@ -91,6 +91,7 @@ jobs:
         echo "::set-output name=username::${ACR_USERNAME}"
         echo "::add-mask::${ACR_PASSWORD}"
         echo "::set-output name=password::${ACR_PASSWORD}"
+        az aks get-credentials -g ynhd_group -n ynhd --overwrite
         docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
         kubectl cluster-info dump
         
