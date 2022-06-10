@@ -83,6 +83,7 @@ jobs:
     - name: az login
       run: |
         az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}
+        az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
         az acr update -n ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} --admin-enabled true
         ACR_USERNAME=$(az acr credential show -g ${{ env.RESOURCE_GROUP }} -n ${{ env.AZURE_CONTAINER_REGISTRY }} --query username -o tsv)
         ACR_PASSWORD=$(az acr credential show -g ${{ env.RESOURCE_GROUP }} -n ${{ env.AZURE_CONTAINER_REGISTRY }} --query passwords[0].value -o tsv)
