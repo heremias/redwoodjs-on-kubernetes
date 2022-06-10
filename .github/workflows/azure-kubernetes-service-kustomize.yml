@@ -40,7 +40,7 @@ on:
 env:
   AZURE_CONTAINER_REGISTRY: "ycloud"
   CONTAINER_NAME: "redwood-main"
-  RESOURCE_GROUP: "ynhd-group"
+  RESOURCE_GROUP: "ynhd_group"
   CLUSTER_NAME: "ynhd"
   IMAGE_PULL_SECRET_NAME: "redwood"
   KUSTOMIZE_PATH: "your-kustomize-path"
