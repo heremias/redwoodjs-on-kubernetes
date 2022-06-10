@@ -25,13 +25,13 @@ COPY redwood.toml .
 COPY yarn.lock .
 
 # Install dependencies
-#RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 # Install additional dependencies
-#RUN yarn add react react-dom @redwoodjs/api-server @redwoodjs/internal --ignore-workspace-root-check
+RUN yarn add react react-dom @redwoodjs/api-server @redwoodjs/internal --ignore-workspace-root-check
 
 # Build
-#RUN yarn rw build api
+RUN yarn rw build api
 
 # Migrate database
 # This has been commented out in this example post
