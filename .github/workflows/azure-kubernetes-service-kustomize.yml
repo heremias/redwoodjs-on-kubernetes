@@ -62,6 +62,10 @@ jobs:
     - name: az show
       run: |
         az account show
+    
+    - name: az switch
+      run: |
+        az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
       run: |
