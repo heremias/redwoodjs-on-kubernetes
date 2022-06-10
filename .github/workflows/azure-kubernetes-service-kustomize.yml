@@ -91,6 +91,9 @@ jobs:
         echo "::set-output name=username::${ACR_USERNAME}"
         echo "::add-mask::${ACR_PASSWORD}"
         echo "::set-output name=password::${ACR_PASSWORD}"
+        docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
+        kubectl create secret docker-registry redwood --docker-server=ycloud.azurecr.io --docker-username=ycloud --docker-password=${{ secrets.ACR_TOKEN }} --docker-email=Jeremy.evans@ymca.net
+        
       id: get-acr-creds
 
     # Creates a kubernetes secret on your Azure Kubernetes Service cluster that matches up to the credentials from the last step
