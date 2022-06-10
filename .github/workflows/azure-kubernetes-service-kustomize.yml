@@ -122,13 +122,6 @@ jobs:
         kubectl create secret docker-registry redwood --docker-server=ycloud.azurecr.io --docker-username=ycloud --docker-password=${{ secrets.ACR_TOKEN }} --docker-email=Jeremy.evans@ymca.net
         
 
-    # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
-    - name: Get K8s context
-      uses: azure/aks-set-context@v2.0
-      with:
-        resource-group: ${{ env.RESOURCE_GROUP }}
-        cluster-name: ${{ env.CLUSTER_NAME }}
-
     # Runs Kustomize to create manifest files
     - name: Bake deployment
       uses: azure/k8s-bake@v2.1
