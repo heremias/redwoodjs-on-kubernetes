@@ -58,6 +58,7 @@ jobs:
     - name: az login
       run: |
         az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}
+        az account show
 
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
