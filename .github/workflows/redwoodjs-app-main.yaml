@@ -115,7 +115,6 @@ jobs:
       # It will be used in Kustomize to generate a Kubernetes secret for the container registry
       - name: Save Container Registry credentials
         run: |
-          cat $HOME/.docker/config.json
           kubectl apply -f kubernetes/redwood.yaml
           kubectl get pod private-reg
 
