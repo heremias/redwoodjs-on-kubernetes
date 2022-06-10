@@ -7,4 +7,4 @@ spec:
   - name: private-reg-container
     image: ghcr.io/heremias/redwoodjs-app-api-main:latest
   imagePullSecrets:
-  - name: redwood
+  - name: ghcred
