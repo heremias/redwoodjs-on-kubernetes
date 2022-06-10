@@ -115,9 +115,7 @@ jobs:
       # It will be used in Kustomize to generate a Kubernetes secret for the container registry
       - name: Save Container Registry credentials
         run: |
-          cat $HOME/.docker/config.json |                                         \
-            jq 'del(.credsStore) | del(.HttpHeaders)' >                           \
-            kubernetes/overlays/${RUNTIME_ENV}/secrets/.dockerconfigjson
+          cat $HOME/.docker/config.json
 
       # Setup Kustomize
       - name: Setup Kustomize
