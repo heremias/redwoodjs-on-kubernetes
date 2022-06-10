@@ -92,7 +92,7 @@ jobs:
         echo "::add-mask::${ACR_PASSWORD}"
         echo "::set-output name=password::${ACR_PASSWORD}"
         docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
-        kubectl cluster-info
+        kubectl cluster-info dump
         
       id: get-acr-creds
 
