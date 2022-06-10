@@ -74,17 +74,6 @@ jobs:
     - name: az login
       run: |
         az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}
-
-    # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
-    - name: Get K8s context
-      uses: azure/aks-set-context@v2.0
-      with:
-        resource-group: ${{ env.RESOURCE_GROUP }}
-        cluster-name: ${{ env.CLUSTER_NAME }}
-
-    # Retrieves the credentials for pulling images from your Azure Container Registry
-    - name: Get ACR credentials
-      run: |
         az acr update -n ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} --admin-enabled true
         ACR_USERNAME=$(az acr credential show -g ${{ env.RESOURCE_GROUP }} -n ${{ env.AZURE_CONTAINER_REGISTRY }} --query username -o tsv)
         ACR_PASSWORD=$(az acr credential show -g ${{ env.RESOURCE_GROUP }} -n ${{ env.AZURE_CONTAINER_REGISTRY }} --query passwords[0].value -o tsv)
