@@ -23,10 +23,10 @@ COPY redwood.toml .
 COPY yarn.lock .
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+#RUN yarn install --frozen-lockfile
 
 # Build
-RUN yarn rw build web
+#RUN yarn rw build web
 
 # Clean up
 RUN rm -rf ./web/src
