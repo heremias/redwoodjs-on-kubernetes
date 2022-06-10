@@ -112,23 +112,5 @@ jobs:
         az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
         az aks get-credentials -g ynhd_group -n ynhd --overwrite
         docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
-
-    # Runs Kustomize to create manifest files
-    - name: Bake deployment
-      uses: azure/k8s-bake@v2.1
-      with:
-        renderEngine: 'kustomize'
-        kustomizationPath: ${{ env.KUSTOMIZE_PATH }}
-        kubectl-version: latest
-      id: bake
-
-    # Deploys application based on manifest files from previous step
-    - name: Deploy application
-      uses: Azure/k8s-deploy@v3.1
-      with:
-        action: deploy
-        manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        images: |
-          ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
-        imagepullsecrets: |
-          ${{ env.IMAGE_PULL_SECRET_NAME }}
+        kubectl apply -f kubernetes/redwood.yaml
+        kubectl get pod private-reg
