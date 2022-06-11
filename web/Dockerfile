@@ -41,11 +41,10 @@ FROM nginx as runner
 COPY --from=builder /app/web/dist /usr/share/nginx/html
 
 # Copy nginx configuration
-COPY config/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY web/config/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # List files
 RUN ls -lA /usr/share/nginx/html
 
 # Expose RedwoodJS web port
 EXPOSE 8910
-CMD ["yarn ","serve"];
