@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "api-chart.labels" . | nindent 4 }}
+  name: {{ include "api-chart.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "api-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "api-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        name: {{ .Chart.Name }}
+        ports:
+        - containerPort: 8911
+        env:
+        - name: REACT_APP_EMPLOYEE_API_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: reactconfig2
+              key: EMPLOYEE_API_BASE_URL_VALUE
+        - name: REACT_APP_SKILL_API_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: reactconfig2
+              key: SKILL_API_BASE_URL_VALUE

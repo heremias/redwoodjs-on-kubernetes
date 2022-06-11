@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/heremias/redwoodjs-app-web-main
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "c60eb88f7f6f98c49dcc70a88b5c005cfaa224e9"
+
+imagePullSecrets:
+  - name: ghcred
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8910
+
+configMap:
+  name: reactconfig
+
+ingress:
+  enabled: false
+
+
+
+

@@ -16,4 +16,4 @@ spec:
             - backend:
                 serviceName: api
                 servicePort: 8911
-            path: /api
+              path: /api
