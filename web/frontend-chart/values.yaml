@@ -4,13 +4,13 @@ image:
   repository: ghcr.io/heremias/redwoodjs-app-web-main
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "c60eb88f7f6f98c49dcc70a88b5c005cfaa224e9"
+  tag: "87e663232befca16b40b48fe69d4969c103138b9"
 
 imagePullSecrets:
-  - name: ghcred
+  - name: redwoods
 
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 80
   targetPort: 8910
 
@@ -19,7 +19,3 @@ configMap:
 
 ingress:
   enabled: false
-
-
-
-

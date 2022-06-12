@@ -43,7 +43,7 @@ env:
   WEB_CONTAINER_NAME: "redwood-web"
   RESOURCE_GROUP: "ynhd_group"
   CLUSTER_NAME: "ynhd"
-  IMAGE_PULL_SECRET_NAME: "redwood"
+  IMAGE_PULL_SECRET_NAME: "redwoods"
   KUSTOMIZE_PATH: "your-kustomize-path"
 
 jobs:
@@ -59,11 +59,11 @@ jobs:
     - name: az login
       run: |
         az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}
-    
+
     - name: az show
       run: |
         az account show
-    
+
     - name: az switch
       run: |
         az account set --subscription "be822816-d331-4f6b-a872-337b841fa8cc"
@@ -72,7 +72,7 @@ jobs:
       run: |
         az acr build -f api/Dockerfile --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
         az acr build -f web/Dockerfile --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.WEB_CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
-        
+
   createSecret:
     permissions:
       contents: read
@@ -92,7 +92,7 @@ jobs:
         echo "::add-mask::${ACR_PASSWORD}"
         echo "::set-output name=password::${ACR_PASSWORD}"
         az aks get-credentials -g ynhd_group -n ynhd --overwrite
-        docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}        
+        docker login ycloud.azurecr.io --username ycloud --password ${{ secrets.ACR_TOKEN }}
       id: get-acr-creds
 
   deploy:
@@ -105,7 +105,7 @@ jobs:
     steps:
     # Checks out the repository this file is in
     - uses: actions/checkout@v3
-    
+
     - name: az login
       run: |
         az login -u ${{ secrets.YU }} -p ${{ secrets.YP }}

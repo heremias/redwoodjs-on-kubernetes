@@ -19,6 +19,7 @@ spec:
         name: {{ .Chart.Name }}
         ports:
         - containerPort: 8910
+          name: rw-web
         env:
         - name: REACT_APP_EMPLOYEE_API_BASE_URL
           valueFrom:
@@ -30,3 +31,5 @@ spec:
             configMapKeyRef:
               name: reactconfig
               key: SKILL_API_BASE_URL_VALUE
+      imagePullSecrets:
+        - name: redwoods
