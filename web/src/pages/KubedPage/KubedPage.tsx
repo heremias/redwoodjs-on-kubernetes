@@ -6,7 +6,7 @@ const KubedPage = () => {
     <>
       <MetaTags title="Kubed" description="Kubed page" />
 
-      <h1>KubedPage</h1>
+      <h1>Be Colorful</h1>
       <div className="grid">
         <p>
           Find me in <code>./web/src/pages/KubedPage/KubedPage.tsx</code>
