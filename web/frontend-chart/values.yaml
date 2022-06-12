@@ -4,7 +4,7 @@ image:
   repository: ghcr.io/heremias/redwoodjs-app-web-main
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "87e663232befca16b40b48fe69d4969c103138b9"
+  tag: "b0b6871c40b79e1255a97adb3ba9b1cf5a19e2b3"
 
 imagePullSecrets:
   - name: redwoods
